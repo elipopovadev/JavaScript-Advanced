@@ -2,11 +2,7 @@ let aggregateElements = (array) => {
     let numbersArray = array.map(Number);
     let sum = numbersArray.reduce((a, b) => a + b);
  
-    let inverseValuesSum = 0;
-    for (let i = 0; i < numbersArray.length; i++) {
-        inverseValuesSum += 1 / numbersArray[i];
-    }
- 
+    let inverseValuesSum = numbersArray.reduce((a, b) => a + 1 / b, 0); 
     let stringConcat = numbersArray.join('');
     console.log(sum);
     console.log(inverseValuesSum);
