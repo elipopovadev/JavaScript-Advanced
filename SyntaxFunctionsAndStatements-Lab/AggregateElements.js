@@ -1,4 +1,4 @@
-let aggregateElements = (...array) => {
+let aggregateElements = (array) => {
     let numbersArray = array.map(Number);
     let sum = numbersArray.reduce((a, b) => a + b);
  
@@ -14,4 +14,4 @@ let aggregateElements = (...array) => {
 }
  
 
-aggregateElements(2, 4, 8, 16);
+aggregateElements([2, 4, 8, 16]);
