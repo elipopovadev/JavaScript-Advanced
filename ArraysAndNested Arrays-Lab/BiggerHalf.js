@@ -1,7 +1,7 @@
 function solve(array){
     array.sort((a,b) => a - b);
     newArray =[];
-    for (let index = Math.floor(array.length/2); index < array.length; index++) {
+    for (let index = Math.floor(array.length / 2); index < array.length; index++) {
        
         newArray.push(array[index])
     }
