@@ -1,7 +1,6 @@
 function findEvenPositionElement(array){
    let newArray = array.filter((element, index) => index % 2 === 0)
                        .join(' ');
-
    console.log(newArray);
 }
 
