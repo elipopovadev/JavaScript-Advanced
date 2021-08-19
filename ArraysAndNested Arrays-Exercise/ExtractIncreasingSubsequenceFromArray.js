@@ -1,7 +1,7 @@
 function extract(array) {
     let max = Number.MIN_SAFE_INTEGER;
     let newArray = array.filter(number => {
-        if (number > max) {
+        if (number => max) {
             max = number;
             return true;
         } else {
