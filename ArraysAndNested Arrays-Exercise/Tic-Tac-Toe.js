@@ -59,14 +59,7 @@ function solve(input) {
             return;
         }
  
-        let theresFalse = false;
-        for (let row = 0; row < arr.length; row++) {
-            if (arr[row].includes(false)) {
-                theresFalse = true;
-            }
-        }
- 
-        if (!theresFalse) {
+        if (arr.every(row => row.every(el => el !== false))){
             console.log('The game ended! Nobody wins :(');
             printMatrix();
             return;
