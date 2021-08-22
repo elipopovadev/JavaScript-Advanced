@@ -5,7 +5,7 @@ function solve(input) {
         [false, false, false],
         [false, false, false]
     ];
-
+ 
     let player = 'X';
     for (let line of input) {
         [currRow, currCol] = line.split(' ').map(Number);
@@ -59,12 +59,13 @@ function solve(input) {
             return;
         }
  
-        if (arr.every(row => row.every(el => el !== false))){
+        let hasFreeFields = (matrix) => matrix.some((arr) => arr.some(value => value === false))
+        if(!hasFreeFields(arr)){
             console.log('The game ended! Nobody wins :(');
             printMatrix();
             return;
-        }
- 
+        }   
+                 
         player = player === 'X' ? 'O' : 'X';
     }
  
@@ -74,7 +75,7 @@ function solve(input) {
         }
     }
 }
-
+ 
 solve(["0 1",
 "0 0",
 "0 2", 
@@ -86,3 +87,4 @@ solve(["0 1",
 "2 1",
 "0 0"]
 )
+ 
