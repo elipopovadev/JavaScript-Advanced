@@ -1,36 +1,45 @@
 function solve(array) {
-    let register = {};
+    let register = new {};
     array.forEach(line => {
         let [systemName, componentName, subcomponentName] = line.split(' | ');
         if (!register[systemName]) {
             register[systemName] = {};
             register[systemName][componentName] = [];
-            register[systemName][componentName].push({ subcomponentName });
+            register[systemName][componentName].push(subcomponentName);
         } else if (register[systemName] && !register[systemName][componentName]) {
             register[systemName][componentName] = [];
-            register[systemName][componentName].push({ subcomponentName });
+            register[systemName][componentName].push(subcomponentName);
         } else {
-            register[systemName][componentName].push({ subcomponentName });
+            register[systemName][componentName].push(subcomponentName);
         }
     })
 
-    // Order the systems in register by amount of components, in descending order, as first criteria, and by alphabetical order as second criteria
-    Object.keys(register).sort((a, b) => Object.keys(register[b]).length - Object.keys(register[a]).length || a.localeCompare(b));
-
-    for (const [currentSystem, componentsCurrentSystem] of Object.entries(register)) {
-        console.log(currentSystem);
-
-        // the Components must be ordered by amount of Subcomponents, in descending order
-        Object.keys(currentSystem).sort((a, b) => Object.keys(currentSystem[b]).length - Object.keys(currentSystem[a]).length);
-
-        for (const [currentComponent, subcomponentsCurrentComponent] of Object.entries(componentsCurrentSystem)) {
-            console.log(`|||${currentComponent}`);
-            for (const subcomponent of Object.values(subcomponentsCurrentComponent)) {
-                console.log(`||||||${subcomponent.subcomponentName}`);
-            }
+    // Order the systemsName in register by amount of components, in descending order, as first criteria, and by alphabetical order as second criteria
+     // as string [] only keys
+    let sortedSystemsName = Object.keys(register).sort((a, b) => {
+        if (Object.keys(register[b]).length > Object.keys(register[a]).length) {
+            return 1;
+        } else if (Object.keys(register[b]).length === Object.keys(register[a]).length) {
+            return a.localeCompare(b);
+        } else {
+            return -1;
         }
-    }
+    });
+
+    sortedSystemsName.forEach(currentSystemName => {
+        console.log(currentSystemName); // as string
+
+        let sortedComponentsBySubcomponentsLength = Object.keys(register[currentSystemName]).sort((a, b) =>
+            Object.keys((register[currentSystemName][b]).length - Object.keys((register[currentSystemName][a].length))));
+
+        sortedComponentsBySubcomponentsLength.forEach((currentComponent => {
+            console.log(`|||${currentComponent}`); // as string
+
+            register[currentSystemName][currentComponent].forEach(subcomponent => console.log(`||||||${subcomponent}`));
+        }));
+    });
 }
+
 
 solve(['SULS | Main Site | Home Page',
 'SULS | Main Site | Login Page',
