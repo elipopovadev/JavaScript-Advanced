@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<link rel="stylesheet" href="template.css">
+	<title>NUMPAD CALCULATOR</title>
+</head>
+
+<body onload="solve()">
+	<div id="calculator">
+		<!-- Screen and clear key -->
+		<div class="top">
+			<button class="clear" type="button" value="Clear">C</button>
+			<p id="expressionOutput"></p>
+			<p id="resultOutput"></p>
+			<div id="result"></div>
+		</div>
+
+		<div class="keys">
+			<!-- operators and other keys -->
+			<button type="button" value="7" data-number>7</button>
+			<button type="button" value="8" data-number>8</button>
+			<button type="button" value="9" data-number>9</button>
+			<button type="button" value="/" data-operation>/</button>
+			<button type="button" value="4" data-number>4</button>
+			<button type="button" value="5" data-number>5</button>
+			<button type="button" value="6" data-number>6</button>
+			<button type="button" value="*" data-operation>x</button>
+			<button type="button" value="1" data-number>1</button>
+			<button type="button" value="2" data-number>2</button>
+			<button type="button" value="3" data-number>3</button>
+			<button type="button" value="-" data-operation>-</button>
+			<button type="button" value="0" data-number>0</button>
+			<button type="button" value="." data-number>.</button>
+			<button type="button" value="=" data-equals>=</button>
+			<button type="button" value="+" data-operation>+</button>
+		</div>
+	</div>
+
+	<script src="solution.js"></script>
+</body>
+
+</html>
