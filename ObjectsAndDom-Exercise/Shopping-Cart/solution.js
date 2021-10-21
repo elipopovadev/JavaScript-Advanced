@@ -8,7 +8,6 @@ function solve() {
         button.addEventListener('click', () => {
             if (button.className === 'checkout') {
                 selectedCheckout();
-                return;
             }
 
             addProductToCart(button);
@@ -18,9 +17,9 @@ function solve() {
     function selectedCheckout() {
         let productsList = allOrderedProducts.join(', ');
         textarea.innerHTML += `You bought ${productsList} for ${totalPrice.toFixed(2)}.`;
-        document.querySelectorAll('button.className').forEach(elem => {
-            elem.disabled = true;
-        })
+        for (const button of allbuttons) {
+            button.setAttribute('disabled', true);
+        }
     }
 
     function addProductToCart(button) {
