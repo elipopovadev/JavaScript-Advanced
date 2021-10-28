@@ -29,6 +29,23 @@
             <input type="text" />
         </div>
     </div>
+    <script>
+        function focus() {
+            let allTextElements = document.querySelectorAll('input[type = "text"]');
+            for (const textElement of allTextElements) {
+                textElement.addEventListener('focus', function (e) {
+                    let parrentDivElement = e.currentTarget.parrentElement;
+                    parrentDivElement.classList.add('focused');
+                })
+
+                textElement.addEventListener('blur', function (e) {
+                    let parrentDivElement = e.currentTarget.parrentElement;
+                    parrentDivElement.classList.remove('focused');
+                })
+            }
+        }
+
+    </script>
 </body>
 
 </html>
