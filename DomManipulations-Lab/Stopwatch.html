@@ -19,16 +19,18 @@
             let stopButton = document.getElementById("stopBtn");
             let timer = document.getElementById("time");
 
-            let seconds = 0;
-            let minutes = 0;
-            let hours = 0;
+            let seconds;
+            let minutes;
+            let hours;
             let interval;
 
             startButton.addEventListener("click", function (e) {
-                timer.innerHTML = "00:00:00";
+                seconds = 0;
+                minutes = 0;
+                hours = 0;
                 e.currentTarget.setAttribute("disabled", true);
                 stopButton.removeAttribute("disabled");
-                interval = setInterval(startTimer, 1000)
+                interval = setInterval(startTimer, 1000);
             })
 
             stopButton.addEventListener("click", function (e) {
@@ -49,9 +51,12 @@
                     }
                 }
 
-                timer.innerHTML = (hours < 10 ? "0" : "") + hours + ":" + (minutes < 10 ? "0" : "") + minutes + ":" + (seconds < 10 ? "0" : "") + seconds;
+                updateTimerView()
             }
 
+            function updateTimerView() {
+                timer.innerHTML = (hours < 10 ? "0" : "") + hours + ":" + (minutes < 10 ? "0" : "") + minutes + ":" + (seconds < 10 ? "0" : "") + seconds;
+            }
         }
     </script>
 </body>
