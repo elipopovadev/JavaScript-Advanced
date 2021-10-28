@@ -25,9 +25,7 @@
             let interval;
 
             startButton.addEventListener("click", function (e) {
-                seconds = 0;
-                minutes = 0;
-                hours = 0;
+                resetTimer();
                 e.currentTarget.setAttribute("disabled", true);
                 stopButton.removeAttribute("disabled");
                 interval = setInterval(startTimer, 1000);
@@ -38,6 +36,12 @@
                 e.currentTarget.setAttribute("disabled", true);
                 startButton.removeAttribute("disabled");
             })
+
+            function resetTimer() {
+                seconds = 0;
+                minutes = 0;
+                hours = 0;
+            }
 
             function startTimer() {
                 seconds++;
