@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>04. Stopwatch</title>
+</head>
+
+<body>
+    <div id="time" style="border:3px solid blue; text-align:center; font-size:2em; margin-bottom:10px">00:00</div>
+    <button id="startBtn">Start</button>
+    <button id="stopBtn" disabled="true">Stop</button>
+    <script>
+        window.onload = stopwatch();
+        function stopwatch() {
+            let startButton = document.getElementById("startBtn");
+            let stopButton = document.getElementById("stopBtn");
+            let timer = document.getElementById("time");
+
+            let seconds = 0;
+            let minutes = 0;
+            let hours = 0;
+            let interval;
+
+            startButton.addEventListener("click", function (e) {
+                timer.innerHTML = "00:00:00";
+                e.currentTarget.setAttribute("disabled", true);
+                stopButton.removeAttribute("disabled");
+                interval = setInterval(startTimer, 1000)
+            })
+
+            stopButton.addEventListener("click", function (e) {
+                clearInterval(interval);
+                e.currentTarget.setAttribute("disabled", true);
+                startButton.removeAttribute("disabled");
+            })
+
+            function startTimer() {
+                seconds++;
+                if (seconds / 60 === 1) {
+                    seconds = 0;
+                    minutes++;
+
+                    if (minutes / 60 === 1) {
+                        minutes = 0;
+                        hours++;
+                    }
+                }
+
+                timer.innerHTML = (hours < 10 ? "0" : "") + hours + ":" + (minutes < 10 ? "0" : "") + minutes + ":" + (seconds < 10 ? "0" : "") + seconds;
+            }
+
+        }
+    </script>
+</body>
+
+</html>
