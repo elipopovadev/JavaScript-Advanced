@@ -1,10 +1,10 @@
 function encodeAndDecodeMessages() {
     let encodeButton = document.querySelectorAll("button")[0];
     let decodeButton = document.querySelectorAll("button")[1];
+    let textAreaForEncodeMessage = document.querySelectorAll("textarea")[0];
     let textAreaForDecodeMessage = document.querySelectorAll("textarea")[1];
 
     encodeButton.addEventListener("click", function () {
-        let textAreaForEncodeMessage = document.querySelectorAll("textarea")[0];
         let message = textAreaForEncodeMessage.value;
         let encodeMessage = encode(message);
         textAreaForEncodeMessage.value = "";
