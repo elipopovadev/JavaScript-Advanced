@@ -4,32 +4,40 @@ function solve() {
     let result = document.getElementById('result').children;
     let history = document.getElementById('history');
 
+    let cardOne;
+    let cardTwo;
+
     if (result[0].innerHTML === "") {
-        playerOneCards.addEventListener("click", e => { 
-            if(e.target.name === undefined) {
+        playerOneCards.addEventListener("click", e => {
+            if (e.target.name === undefined) {
                 return;
             }
             result[0].innerHTML = e.target.name;
+            cardOne = e.target;
             closeCard(e);
+            if (result[0].innerHTML !== "" && result[2].innerHTML !== "") {
+                addBorderToCards(cardOne, cardTwo);
+                keepHistory(cardOne, cardTwo);
+                defaultValues(result);
+            }
         });
     }
 
     if (result[2].innerHTML === "") {
         playerTwoCards.addEventListener("click", e => {
-            if(e.target.name === undefined) {
+            if (e.target.name === undefined) {
                 return;
             }
             result[2].innerHTML = e.target.name;
+            cardTwo = e.target;
             closeCard(e);
+            if (result[0].innerHTML !== "" && result[2].innerHTML !== "") {
+                addBorderToCards(cardOne, cardTwo);
+                keepHistory(cardOne, cardTwo);
+                defaultValues(result);
+            }
         });
     }
-
-    if (result[0].innerHTML !== "" && result[2].innerHTML !== "") {
-        addBorderToCards(result);
-        keepHistory(result);
-        defaultValues(result);
-    }
-
 
 
     function closeCard(e) {
@@ -38,25 +46,21 @@ function solve() {
         }
     }
 
-    function addBorderToCards(result) {
-        let firstCard = document.getElementsByName(result[0].innerHTML)[0];
-        let secondCard = document.getElementsByName(result[2].innerHTML)[0];
-        if (Number(firstCard.name) > Number(secondCard.name)) {
-            firstCard.style.border = '2px solid green';
-            secondCard.style.border = '2px solid red';
-        } else if (Number(firstCard.name) < Number(secondCard.name)) {
-            firstCard.style.border = '2px solid red';
-            secondCard.style.border = '2px solid green';
+    function addBorderToCards(cardOne, cardTwo) {
+        if (Number(cardOne.name) > Number(cardTwo.name)) {
+            cardOne.style.border = '2px solid green';
+            cardTwo.style.border = '2px solid red';
+        } else if (Number(cardOne.name) < Number(cardTwo.name)) {
+            cardOne.style.border = '2px solid red';
+            cardTwo.style.border = '2px solid green';
         }
     }
 
-    function keepHistory(result) {
-        let firstCard = document.getElementsByName(result[0].innerHTML)[0];
-        let secondCard = document.getElementsByName(result[2].innerHTML)[0];
-        history.innerHTML += `[${firstCard.name} vs ${secondCard.name}]`;
+    function keepHistory(cardOne, cardTwo) {
+        history.innerHTML += `[${cardOne.name} vs ${cardTwo.name}]`;
     }
 
-    function defaultValues (result) {
+    function defaultValues(result) {
         result[0].innerHTML = "";
         result[2].innerHTML = "";
     }
