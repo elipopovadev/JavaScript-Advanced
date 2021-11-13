@@ -1,30 +1,34 @@
 function solve() {
     let playerOneCards = document.getElementById('player1Div');
     let playerTwoCards = document.getElementById('player2Div');
-    let result = document.getElementById('result');
+    let result = document.getElementById('result').children;
     let history = document.getElementById('history');
 
-    playerOneCards.addEventListener("click", e => {
-        result.firstElementChild.innerHTML = e.target.name;
-        closeCard(e);
-        playerTwoCards.addEventListener("click", e => {
-            result.lastElementChild.innerHTML = e.target.name;
+    if (result[0].innerHTML === "") {
+        playerOneCards.addEventListener("click", e => { 
+            if(e.target.name === undefined) {
+                return;
+            }
+            result[0].innerHTML = e.target.name;
             closeCard(e);
         });
-        addBorderToCards(result);
-        keepHistory(result);
-    });
+    }
 
-    playerTwoCards.addEventListener("click", e => {
-        result.lastElementChild.innerHTML = e.target.name;
-        closeCard(e);
-        playerOneCards.addEventListener("click", e => {
-            result.firstElementChild.innerHTML = e.target.name;
+    if (result[2].innerHTML === "") {
+        playerTwoCards.addEventListener("click", e => {
+            if(e.target.name === undefined) {
+                return;
+            }
+            result[2].innerHTML = e.target.name;
             closeCard(e);
         });
+    }
+
+    if (result[0].innerHTML !== "" && result[2].innerHTML !== "") {
         addBorderToCards(result);
         keepHistory(result);
-    });
+        defaultValues(result);
+    }
 
 
 
@@ -35,20 +39,25 @@ function solve() {
     }
 
     function addBorderToCards(result) {
-        let firstCard = document.getElementsByName(result.firstElementChild.innerHTML)[0];
-        let secondCard = document.getElementsByName(result.lastElementChild.innerHTML)[0];
-        if (Number(firstCard.innerHTML) > Number(secondCard.innerHTML)) {
+        let firstCard = document.getElementsByName(result[0].innerHTML)[0];
+        let secondCard = document.getElementsByName(result[2].innerHTML)[0];
+        if (Number(firstCard.name) > Number(secondCard.name)) {
             firstCard.style.border = '2px solid green';
             secondCard.style.border = '2px solid red';
-        } else if (Number(firstCard.innerHTML) < Number(secondCard.innerHTML)) {
+        } else if (Number(firstCard.name) < Number(secondCard.name)) {
             firstCard.style.border = '2px solid red';
             secondCard.style.border = '2px solid green';
         }
     }
 
     function keepHistory(result) {
-        let firstCard = document.getElementsByName(result.firstElementChild.innerHTML)[0];
-        let secondCard = document.getElementsByName(result.lastElementChild.innerHTML)[0];
-        history.innerHTML += `[${firstCard.innerHTML} vs ${secondCard.innerHTML}]`;
+        let firstCard = document.getElementsByName(result[0].innerHTML)[0];
+        let secondCard = document.getElementsByName(result[2].innerHTML)[0];
+        history.innerHTML += `[${firstCard.name} vs ${secondCard.name}]`;
+    }
+
+    function defaultValues (result) {
+        result[0].innerHTML = "";
+        result[2].innerHTML = "";
     }
 }
