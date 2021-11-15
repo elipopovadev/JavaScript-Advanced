@@ -34,6 +34,7 @@ class Person {
     }
 }
 
+
 let person = new Person("Albert", "Simpson");
 console.log(person.fullName); //Albert Simpson
 person.firstName = "Simon";
