@@ -7,36 +7,46 @@ class Company {
         if (!isValid(username) || !isValid(salary) || !isValid(position) || !isValid(department) || salary < 0) {
             throw new Error("Invalid input!");
         }
-        let newEmployee = new Employee(username, salary, position, department);
-        if(!this.departments[department]) {
+
+        if (!this.departments[department]) {
             this.departments[department] = [];
-            this.departments[department].push(newEmployee);
+            this.departments[department].push({ username, salary, position });
         } else {
-            this.departments[department].push(newEmployee);
+            this.departments[department].push({ username, salary, position });
+        }
+        return `New employee is hired. Name: ${username}. Position: ${position}`;
+
+        function isValid(value) {
+            if (value === '' || value === undefined || value === null) {
+                return false;
+            }
+            return true;
         }
     }
 
-    bestDepartment () {
-
-    }
-
-    isValid(value) {
-        if (value === '' || value === undefined || value === null) {
-            return false;
+    bestDepartment() {
+        let maxSalary = 0;
+        let bestDepartmentWithMaxSalary;
+        for (const departmentsName in this.departments) {
+            let totalSalaryInDepartment = this.departments[departmentsName].map(employee => employee.salary).reduce((a, b) => a + b, 0);
+            let averageSalaryInDepartment = totalSalaryInDepartment / this.departments[departmentsName].length;
+            if (averageSalaryInDepartment > maxSalary) {
+                maxSalary = averageSalaryInDepartment;
+                bestDepartmentWithMaxSalary = departmentsName;
+            }
         }
-        return true;  
+
+        let sortedBestDepartment = this.departments[bestDepartmentWithMaxSalary].sort((a, b) => a.username.localeCompare(b.username))
+            .sort((a, b) => b.salary - a.salary);
+        let result = `Best Department is: ${bestDepartmentWithMaxSalary}\n`;
+        result += `Average salary: ${maxSalary.toFixed(2)}\n`;
+        result += sortedBestDepartment
+            .map(obj => Object.values(obj).join(' '))
+            .join('\n');
+        return result
     }
 }
 
-
-class Employee {
-    constructor(username, salary, position, department) {
-        this.username = username;
-        this.salary = salary;
-        this.position = position;
-        this.department = department;
-    }
-}
 
 let c = new Company();
 c.addEmployee("Stanimir", 2000, "engineer", "Construction");
