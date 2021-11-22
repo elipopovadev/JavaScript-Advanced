@@ -27,12 +27,12 @@ class Company {
     bestDepartment() {
         let maxSalary = 0;
         let bestDepartmentWithMaxSalary;
-        for (const departmentsName in this.departments) {
-            let totalSalaryInDepartment = this.departments[departmentsName].map(employee => employee.salary).reduce((a, b) => a + b, 0);
-            let averageSalaryInDepartment = totalSalaryInDepartment / this.departments[departmentsName].length;
+        for (const departmentName in this.departments) {
+            let totalSalaryInDepartment = this.departments[departmentName].map(employee => employee.salary).reduce((a, b) => a + b, 0);
+            let averageSalaryInDepartment = totalSalaryInDepartment / this.departments[departmentName].length;
             if (averageSalaryInDepartment > maxSalary) {
                 maxSalary = averageSalaryInDepartment;
-                bestDepartmentWithMaxSalary = departmentsName;
+                bestDepartmentWithMaxSalary = departmentName;
             }
         }
 
