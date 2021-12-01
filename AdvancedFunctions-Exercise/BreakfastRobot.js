@@ -6,7 +6,7 @@ function solution() {
         flavour: 0
     };
 
-    let products = {
+    let recipe = {
         apple: {
             carbohydrate: 1,
             flavour: 2
@@ -44,32 +44,23 @@ function solution() {
         } else if (command == 'prepare') {
             let product = input[1];
             let quantity = input[2];
-            return (cook(product, storage, quantity));
+            return cook(product, quantity);
         } else if (command == 'report') {
             return returnReport(storage);
         }
     }
 
 
-    function cook(product, storage, quantity) {
+    function cook(product, quantity) {
         let result = 'Success';
-        let totalNeededIngredients = new Map();
-        let ingredientsNeededPerOneProduct = products[product];
-        for (let ingredient in ingredientsNeededPerOneProduct) {
-            totalNeededIngredients.set(ingredient, ingredientsNeededPerOneProduct[ingredient] * quantity);
-        }
-
-        for (const ingredient in storage) {
-            if (totalNeededIngredients.get(ingredient) > storage[ingredient]) {
-                result = `Error: not enough ${ingredient} in stock`;
+        for (let key in recipe[product]) {
+            if (recipe[product][key] * quantity > storage[key]) {
+                result = `Error: not enough ${key} in stock`;
                 return result;
             }
         }
-       
-        for (let [key,value] of totalNeededIngredients.entries()) {
-            storage[key]-= value;
-        }
 
+        Object.keys(recipe[product]).map((key) => storage[key] -= (recipe[product][key] * quantity));
         return result;
     }
 
@@ -80,13 +71,17 @@ function solution() {
 
 
 let manager = solution();
-console.log(manager('restock carbohydrate 10')) 
-console.log(manager('restock flavour 10')) 
-console.log(manager('prepare apple 1')) 
-console.log(manager("restock fat 10")) 
-console.log(manager("prepare burger 1")) 
+console.log(manager('restock protein 100'))
+console.log(manager('restock carbohydrate 100'))
+console.log(manager('restock fat 100'))
+console.log(manager("restock flavour 100"))
+console.log(manager("report"))
+console.log(manager('prepare apple 2'))
+console.log(manager('report'))
+console.log(manager("prepare apple 1"))
 console.log(manager("report"))
 
 
- 
+
+
 
