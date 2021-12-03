@@ -1,6 +1,7 @@
 function solve(input) {
     let objects = JSON.parse(input);  
-    let result = objects.reduce((acc, x) => Object.assign(acc, x), {});    
+    let result = objects.reduce((acc, x) => Object.assign(acc, x), {});
+                                           // [...acc, ...x]    
     console.log(result); 
 }
 
