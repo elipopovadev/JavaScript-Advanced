@@ -5,10 +5,11 @@
 
 * Syntax, Functions and Statements
 *  Arrays and Nested Arrays
+*  Function Context
 *  Advanced Functions
 *  DOM
 *  DOM Manipulations 
 *  Objects and Classes
 *  Unit Testing and Modules
-*  Strings and RegExp
+
 
