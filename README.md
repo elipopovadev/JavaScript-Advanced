@@ -7,9 +7,8 @@
 *  Arrays and Nested Arrays
 *  Advanced Functions
 *  DOM
-*  DOM Manipulations
-*  bjects
-*  Classes
+*  DOM Manipulations 
+*  Objects and Classes
 *  Unit Testing and Modules
 *  Strings and RegExp
 
