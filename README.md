@@ -4,11 +4,11 @@
 ### Course content:
 
 * Syntax, Functions and Statements
-* Objects
-*  Arrays
+*  Arrays and Nested Arrays
 *  Advanced Functions
 *  DOM
 *  DOM Manipulations
+*  bjects
 *  Classes
 *  Unit Testing and Modules
 *  Strings and RegExp
