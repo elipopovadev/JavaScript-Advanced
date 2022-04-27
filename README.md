@@ -10,6 +10,4 @@
 *  DOM
 *  DOM Manipulations 
 *  Objects and Classes
-*  Unit Testing and Modules
-
 
